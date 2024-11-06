@@ -19,7 +19,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    
+
     console.log("Connected to MongoDB");
   })
   .catch((error) => {
@@ -79,6 +79,9 @@ app.get("/api/attachments", async (req, res) => {
   }
 });
 
+app.get('/',(req,res)=>{
+    res.send('task server is running')
+});
 // Start server
 const PORT = 5000;
 app.listen(PORT, () => {
