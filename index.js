@@ -19,14 +19,13 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-
     console.log("Connected to MongoDB");
   })
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
   });
 
-// Define a Mongoose schema and model
+// Mongoose schema and model
 const FileSchema = new mongoose.Schema({
   originalName: String,
   extension: String,
@@ -34,7 +33,7 @@ const FileSchema = new mongoose.Schema({
 });
 const File = mongoose.model("File", FileSchema);
 
-// Multer setup for file handling
+// Multer setup for file uploading
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
@@ -71,7 +70,7 @@ app.get("/api/attachments/count", async (req, res) => {
 });
 app.get("/api/attachments", async (req, res) => {
   try {
-    const files = await File.find(); // Assuming `File` is your model
+    const files = await File.find();
     res.status(200).json(files);
   } catch (error) {
     console.error(error);
@@ -79,8 +78,8 @@ app.get("/api/attachments", async (req, res) => {
   }
 });
 
-app.get('/',(req,res)=>{
-    res.send('task server is running')
+app.get("/", (req, res) => {
+  res.send("task server is running");
 });
 // Start server
 const PORT = 5000;
